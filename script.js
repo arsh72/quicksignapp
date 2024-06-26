@@ -13,11 +13,15 @@ ctx.lineCap = 'round'; // Rounded line ends
 
 function getPointerPosition(e) {
     const rect = canvas.getBoundingClientRect();
-    const clientX = e.clientX || e.touches[0].clientX;
-    const clientY = e.clientY || e.touches[0].clientY;
+    const scaleX = canvas.width / rect.width; // Scale X coordinate
+    const scaleY = canvas.height / rect.height; // Scale Y coordinate
+
+    const clientX = (e.clientX || e.touches[0].clientX) - rect.left;
+    const clientY = (e.clientY || e.touches[0].clientY) - rect.top;
+
     return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
+        x: clientX * scaleX,
+        y: clientY * scaleY
     };
 }
 
@@ -39,7 +43,7 @@ function startPosition(e) {
     e.preventDefault();
     painting = true;
     const pos = getPointerPosition(e);
-    ctx.moveTo(pos.x, pos.y); // Move to initial position
+    draw(pos); // Draw immediately at start position
 }
 
 function endPosition() {
