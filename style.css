@@ -20,15 +20,16 @@ body {
 }
 
 canvas {
-    width: 100%;
-    height: 800px; /* Doubled height for larger canvas */
-    max-width: 1200px;
-    border: 1px solid #000; /* Black border */
+    width: 1200px; /* Set canvas width to 1200px */
+    height: 800px; /* Set canvas height to 800px */
+    max-width: 100%; /* Ensure canvas does not exceed container width */
+    border: 5px solid #000; /* Black border */
     background-color: #fff;
     cursor: crosshair;
     display: block;
     margin: 20px auto; /* Centering canvas */
 }
+
 
 .controls {
     display: flex;
