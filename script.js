@@ -8,6 +8,7 @@ const saveButton = document.getElementById('saveButton');
 const retrieveButton = document.getElementById('retrieveButton');
 
 let painting = false;
+let lineWidth = 5; // Adjust default line width as needed
 
 function getPointerPosition(e) {
     const rect = canvas.getBoundingClientRect();
@@ -49,7 +50,7 @@ function draw(e) {
     e.preventDefault();
     const pos = getPointerPosition(e);
 
-    ctx.lineWidth = fontSize.value;
+    ctx.lineWidth = lineWidth * (fontSize.value / 5); // Adjust line width based on fontSize
     ctx.lineCap = 'round';
     ctx.strokeStyle = colorPicker.value;
 
@@ -96,7 +97,7 @@ function changeBackground() {
 }
 
 function changeFontSize() {
-    ctx.lineWidth = fontSize.value;
+    lineWidth = 5 * (fontSize.value / 5); // Adjust line width based on fontSize
 }
 
 window.addEventListener('beforeunload', () => {
