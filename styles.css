@@ -20,8 +20,8 @@ body {
 }
 
 canvas {
-    width: 1200px; /* Set canvas width to 1200px */
-    height: 800px; /* Set canvas height to 800px */
+    width: 800px; /* Set canvas width to 1200px */
+    height: 600px; /* Set canvas height to 800px */
     max-width: 100%; /* Ensure canvas does not exceed container width */
     border: 5px solid #000; /* Black border */
     background-color: #fff;
