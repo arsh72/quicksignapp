@@ -8,7 +8,8 @@ const saveButton = document.getElementById('saveButton');
 const retrieveButton = document.getElementById('retrieveButton');
 
 let painting = false;
-let lineWidth = 5; // Adjust default line width as needed
+let lineWidth = 5; // Default line width
+ctx.lineCap = 'round'; // Rounded line ends
 
 function getPointerPosition(e) {
     const rect = canvas.getBoundingClientRect();
@@ -37,12 +38,13 @@ fontSize.addEventListener('input', changeFontSize);
 function startPosition(e) {
     e.preventDefault();
     painting = true;
-    draw(e);
+    const pos = getPointerPosition(e);
+    ctx.moveTo(pos.x, pos.y); // Move to initial position
 }
 
 function endPosition() {
     painting = false;
-    ctx.beginPath();
+    ctx.beginPath(); // Reset path for next drawing session
 }
 
 function draw(e) {
@@ -51,11 +53,12 @@ function draw(e) {
     const pos = getPointerPosition(e);
 
     ctx.lineWidth = lineWidth * (fontSize.value / 5); // Adjust line width based on fontSize
-    ctx.lineCap = 'round';
     ctx.strokeStyle = colorPicker.value;
 
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
+
+    // Move to the current position to minimize the gap
     ctx.beginPath();
     ctx.moveTo(pos.x, pos.y);
 }
