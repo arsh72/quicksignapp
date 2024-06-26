@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature App</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #000;
+            cursor: crosshair;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="signatureCanvas" width="600" height="400"></canvas>
+        <div class="controls">
+            <input type="color" id="colorPicker" value="#000000">
+            <button id="clearButton">Clear</button>
+            <button id="saveButton">Save</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
