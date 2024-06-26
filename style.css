@@ -4,6 +4,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    margin: 0;
 }
 
 .container {
@@ -11,10 +12,31 @@ body {
 }
 
 canvas {
-    border: 1px solid #000;
+    border: 2px solid #000; /* Black border */
+    background-color: #fff;
     cursor: crosshair;
 }
 
 .controls {
     margin-top: 10px;
+}
+
+#clearButton {
+    background-color: #00ff00; /* Green background */
+    color: #000; /* Black text */
+    border: 1px solid #000; /* Black border */
+    padding: 10px;
+    cursor: pointer;
+}
+
+#saveButton {
+    background-color: #ff0000; /* Red background */
+    color: #fff; /* White text */
+    border: 1px solid #000; /* Black border */
+    padding: 10px;
+    cursor: pointer;
+}
+
+#clearButton:hover, #saveButton:hover {
+    opacity: 0.8; /* Slightly transparent on hover */
 }
