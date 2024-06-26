@@ -21,34 +21,58 @@ canvas {
     border: 2px solid #000; /* Black border */
     background-color: #fff;
     cursor: crosshair;
+    display: block;
+    margin: 20px auto; /* Centering canvas */
 }
 
 .controls {
-    margin-top: 10px;
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
-#clearButton, #saveButton {
-    padding: 10px;
-    border: 1px solid #000; /* Black border */
-    cursor: pointer;
-    flex: 1;
-    margin: 5px;
-    min-width: 100px;
+.controls div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
 }
 
 #clearButton {
-    background-color: #00ff00; /* Green background */
-    color: #000; /* Black text */
+    background-color: #ff0000; /* Red background */
+    color: #fff; /* White text */
+    border: 1px solid #000; /* Black border */
+    padding: 10px;
+    cursor: pointer;
+    flex: 1;
+    margin: 5px;
 }
 
 #saveButton {
-    background-color: #ff0000; /* Red background */
+    background-color: #00ff00; /* Green background */
     color: #fff; /* White text */
+    border: 1px solid #000; /* Black border */
+    padding: 10px;
+    cursor: pointer;
+    flex: 1;
+    margin: 5px;
 }
 
-#clearButton:hover, #saveButton:hover {
+#retrieveButton {
+    background-color: #ffcc00; /* Yellow background */
+    color: #000; /* Black text */
+    border: 1px solid #000; /* Black border */
+    padding: 10px;
+    cursor: pointer;
+    flex: 1;
+    margin: 5px;
+}
+
+#clearButton:hover, #saveButton:hover, #retrieveButton:hover {
     opacity: 0.8; /* Slightly transparent on hover */
 }

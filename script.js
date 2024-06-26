@@ -1,8 +1,11 @@
 const canvas = document.getElementById('signatureCanvas');
 const ctx = canvas.getContext('2d');
 const colorPicker = document.getElementById('colorPicker');
+const backgroundPicker = document.getElementById('backgroundPicker');
+const fontSize = document.getElementById('fontSize');
 const clearButton = document.getElementById('clearButton');
 const saveButton = document.getElementById('saveButton');
+const retrieveButton = document.getElementById('retrieveButton');
 
 let painting = false;
 
@@ -25,7 +28,10 @@ canvas.addEventListener('touchmove', draw);
 
 clearButton.addEventListener('click', clearCanvas);
 saveButton.addEventListener('click', saveCanvas);
+retrieveButton.addEventListener('click', retrieveCanvas);
 colorPicker.addEventListener('input', changeColor);
+backgroundPicker.addEventListener('input', changeBackground);
+fontSize.addEventListener('input', changeFontSize);
 
 function startPosition(e) {
     e.preventDefault();
@@ -43,7 +49,7 @@ function draw(e) {
     e.preventDefault();
     const pos = getPointerPosition(e);
 
-    ctx.lineWidth = 2;
+    ctx.lineWidth = fontSize.value;
     ctx.lineCap = 'round';
     ctx.strokeStyle = colorPicker.value;
 
@@ -55,6 +61,8 @@ function draw(e) {
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = backgroundPicker.value;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function saveCanvas() {
@@ -65,6 +73,33 @@ function saveCanvas() {
     link.click();
 }
 
+function retrieveCanvas() {
+    const dataURL = localStorage.getItem('signature');
+    if (dataURL) {
+        const img = new Image();
+        img.src = dataURL;
+        img.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+        };
+    } else {
+        alert('No saved signature found.');
+    }
+}
+
 function changeColor() {
     ctx.strokeStyle = colorPicker.value;
 }
+
+function changeBackground() {
+    clearCanvas();
+}
+
+function changeFontSize() {
+    ctx.lineWidth = fontSize.value;
+}
+
+window.addEventListener('beforeunload', () => {
+    const dataURL = canvas.toDataURL('image/png');
+    localStorage.setItem('signature', dataURL);
+});
