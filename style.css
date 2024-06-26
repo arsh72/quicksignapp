@@ -5,13 +5,19 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
     text-align: center;
+    width: 90%;
+    max-width: 700px;
 }
 
 canvas {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
     border: 2px solid #000; /* Black border */
     background-color: #fff;
     cursor: crosshair;
@@ -19,22 +25,28 @@ canvas {
 
 .controls {
     margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#clearButton, #saveButton {
+    padding: 10px;
+    border: 1px solid #000; /* Black border */
+    cursor: pointer;
+    flex: 1;
+    margin: 5px;
+    min-width: 100px;
 }
 
 #clearButton {
     background-color: #00ff00; /* Green background */
     color: #000; /* Black text */
-    border: 1px solid #000; /* Black border */
-    padding: 10px;
-    cursor: pointer;
 }
 
 #saveButton {
     background-color: #ff0000; /* Red background */
     color: #fff; /* White text */
-    border: 1px solid #000; /* Black border */
-    padding: 10px;
-    cursor: pointer;
 }
 
 #clearButton:hover, #saveButton:hover {

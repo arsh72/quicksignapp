@@ -6,14 +6,29 @@ const saveButton = document.getElementById('saveButton');
 
 let painting = false;
 
+function getPointerPosition(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.clientX || e.touches[0].clientX;
+    const clientY = e.clientY || e.touches[0].clientY;
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    };
+}
+
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', endPosition);
 canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('touchstart', startPosition);
+canvas.addEventListener('touchend', endPosition);
+canvas.addEventListener('touchmove', draw);
+
 clearButton.addEventListener('click', clearCanvas);
 saveButton.addEventListener('click', saveCanvas);
 colorPicker.addEventListener('input', changeColor);
 
 function startPosition(e) {
+    e.preventDefault();
     painting = true;
     draw(e);
 }
@@ -25,15 +40,17 @@ function endPosition() {
 
 function draw(e) {
     if (!painting) return;
+    e.preventDefault();
+    const pos = getPointerPosition(e);
 
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     ctx.strokeStyle = colorPicker.value;
 
-    ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    ctx.moveTo(pos.x, pos.y);
 }
 
 function clearCanvas() {
